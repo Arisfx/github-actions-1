@@ -1,0 +1,18 @@
+name: checkout
+on: [push]
+
+jobs: 
+  checkout-and-display-files:
+    runs-on: ubuntu-latest
+    steps:
+      - name: list files before
+        run: ls -a
+      - name: checkout
+        run: |
+          git init
+          git remote add origin "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+          git fetch origin # bring the new code without updating my local files
+          git checkout main # switch to "master" branch
+      - name: list files after
+        run: ls -a
+
