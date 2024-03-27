@@ -14,11 +14,17 @@ jobs:
         run: echo $GITHUB_REF # this will run in runner machine
       - name: log context
         run: echo '${{ github.ref  }}' # this is going to be run to github env and sent to runner machine
-      - name: log custom ENV VAR
+      - name: set env var
+        run: |
+          echo "NEW_ENV_VAR=$(date)" >> "GITHUB_ENV"
+          echo "JOB_LEVEL_ENV=$RANDOM" >> "GITHUB_ENV"
+
+        - name: log custom ENV VAR
         env: 
           STEP_LEVEL_ENV: available to this step only
         run: |
           echo '${{ env.STEP_LEVEL_ENV }}'
-          echo $STEP_LEVEL_ENV
+          echo $NEW_ENV_VAR
+          echo $JOB_LEVEL_ENV
 
 
