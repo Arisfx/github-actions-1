@@ -26,5 +26,5 @@ jobs:
       - name: Log Env
         run: echo $API_URL
       - name: Code Security Check
-        uses: github/codeql-action/analyze@v1
+        uses: github/codeql-action/analyze@v2
 
