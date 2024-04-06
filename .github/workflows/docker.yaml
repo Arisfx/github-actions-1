@@ -6,18 +6,10 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: node:20.3-alpine3.17
-      # credentials:
-      #   username:
-      #   password:
       env:
         API_URL: some-url.com
       ports:
         - 80
-      # volumes:
-      #   - vol_name:/path/in/container
-      #   - /path/to/container
-      #   - /path/in/host:/path/in/container
-      # options: --cpus 1
     steps:
       - name: Log Node & OS Versions
         run: |
@@ -25,4 +17,17 @@ jobs:
           cat /etc/os-release
       - name: Log Env
         run: echo $API_URL
+      - name: container in a step
+        uses: docker://node:18.16-alpine3.17
+        with:
+          entrypoint: /usr/local/bin/node
+          args: -p 2+3
+      - name: log node version
+        uses: docker://node:18.16-alpine3.17
+        with:
+          args: -v
+
+          
+
+
 
