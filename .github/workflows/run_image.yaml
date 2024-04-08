@@ -7,16 +7,25 @@ jobs:
   pull-and-run:
     runs-on: ubuntu-latest
     steps:
+
+    - name: Check out the repo
+      uses: actions/checkout@v2
+
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
-    - name: Pull image from Docker Hub
+    - name: Pull Docker image from Docker Hub
       run: |
         docker pull dockerhub2024aris/demorepo2024:1.0
 
     - name: Run Docker image
       run: |
         docker run --name test_container --rm dockerhub2024aris/demorepo2024:1.0
+
+    - name: Run test script
+      run: |
+        chmod +x ./test-script.sh
+        ./test-script.sh
