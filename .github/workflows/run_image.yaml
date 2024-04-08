@@ -9,7 +9,7 @@ jobs:
     steps:
     - name: Pull image from Docker Hub
       run: |
-        docker pull yourusername/yourrepo:yourtag
+        docker pull dockerhub2024aris/demorepo2024:1.0
 
     - name: Run Docker image
       run: |
