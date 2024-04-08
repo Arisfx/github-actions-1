@@ -1,0 +1,16 @@
+name: Pull and Run Docker Image
+
+on:
+  workflow_dispatch: # This allows you to manually trigger the workflow from GitHub
+
+jobs:
+  pull-and-run:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Pull image from Docker Hub
+      run: |
+        docker pull yourusername/yourrepo:yourtag
+
+    - name: Run Docker image
+      run: |
+        docker run --name test_container --rm dockerhub2024aris/demorepo2024:1.0
